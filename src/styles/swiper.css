@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+=====================
+Swiper
+=====================
+*/
+
+/* SWIPER COMMON */
+
+html body .swiper-button-prev,
+html body .swiper-button-next {
+  @apply h-12 w-12 rounded-full border-2 border-primary !text-black hover:bg-primary;
+}
+
+html body .swiper-button-prev::after,
+html body .swiper-button-next::after {
+  @apply text-base font-bold text-primary hover:text-white;
+}
+
+.icon-arrow-long-left {
+  @apply mr-6;
+}
+
+.icon-arrow-long-right,
+.icon-arrow-long-left {
+  @apply cursor-pointer rounded-full border-2 border-primary !text-black hover:bg-primary;
+}
+
+.icon-arrow-long-right svg:nth-child(2),
+.icon-arrow-long-left svg:nth-child(2) {
+  @apply hidden;
+}
+
+.icon-arrow-long-right:hover svg:nth-child(1),
+.icon-arrow-long-left:hover svg:nth-child(1) {
+  @apply hidden;
+}
+
+/* SWIPER MEDIA */
+
+.media-swiper .swiper-button-next,
+.media-swiper .swiper-button-prev {
+  @apply !absolute !-bottom-0 !top-auto;
+  @apply !h-[51px] !w-[51px];
+}
+
+.media-swiper .swiper-button-next {
+  @apply !right-0;
+}
+
+.media-swiper .swiper-button-prev {
+  @apply !left-auto !right-16;
+}
+
+.media-swiper .swiper-pagination {
+  @apply !absolute !left-0 !right-auto !w-auto;
+}
+
+.media-swiper .swiper-pagination-bullet {
+  width: 14px;
+  height: 14px;
+  line-height: 40px;
+  @apply !border-2 !border-primary bg-neutral-200;
+}
+
+.media-swiper .swiper-pagination-bullet-active {
+  @apply !border-2 !border-neutral-200 bg-primary ring-1 ring-primary;
+}
+
+/* EXHIBITOR CARD-LIST */
+
+.exhibitor-swiper .swiper-button-prev {
+  position: unset;
+}
+
+.exhibitor-swiper .swiper-button-next {
+  position: unset;
+}
+
+/* ANIMATION CARD-LIST */
+
+.animation-swiper .swiper-button-prev {
+  position: unset;
+}
+
+.animation-swiper .swiper-button-next {
+  position: unset;
+}
+
+/* Medias CARD-LIST */
+
+.medias-swiper .swiper-wrapper {
+  flex-direction: unset;
+  flex-wrap: wrap;
+}
+.medias-swiper .swiper-button-prev {
+  position: unset;
+  @apply mt-0;
+}
+
+.medias-swiper .swiper-button-next {
+  position: unset;
+  @apply mt-0;
+}
+
+.medias-swiper .swiper-pagination {
+  @apply mt-0 w-fit;
+  position: unset;
+}
+
+html body .nav-wrapper .swiper-pagination {
+  @apply w-[auto];
+}
+
+html body .medias-swiper .swiper-pagination {
+  @apply w-[calc(100%-140px)] md:w-[auto];
+}
+
+.medias-swiper .swiper-pagination-bullet {
+  width: 14px;
+  height: 14px;
+  line-height: 40px;
+  @apply !border-2 !border-primary bg-neutral-200;
+}
+
+.medias-swiper .swiper-pagination-bullet-active {
+  @apply !border-2 !border-neutral-200 bg-primary ring-1 ring-primary;
+}
+
+.medias-swiper .swiper-wrapper .swiper-slide {
+  @apply mb-2.5 h-[auto];
+}
+
+.medias-swiper .swiper-wrapper .swiper-slide > div {
+  @apply h-full;
+}
+
+.medias-swiper .card-img-text > div:nth-child(2) {
+  @apply justify-between pt-4 text-slate-800;
+}
+
+.medias-swiper .card-img-text > div:nth-child(2) span {
+  @apply border-slate-800;
+}
+
+.medias-swiper .card-img-text > div:nth-child(2) span:nth-child(1) {
+  @apply border-0;
+}
+
+.medias-swiper .bg-card-foreground .card-img-text > div:nth-child(2) span {
+  @apply border-white text-white;
+}
+
+
+html body .medias-detail-swiper {
+  @apply px-[65px] md:px-[25%];
+}
+
+.medias-detail-swiper .swiper-wrapper .swiper-slide button {
+  @apply hidden;
+}
+
+.medias-detail-swiper .swiper-wrapper .swiper-slide.swiper-slide-active button {
+  @apply flex;
+}
+
+.medias-detail-swiper .swiper-wrapper .swiper-slide.swiper-slide-prev {
+  @apply opacity-30 scale-90;
+}
+
+.medias-detail-swiper .swiper-wrapper .swiper-slide.swiper-slide-next {
+  @apply opacity-30 scale-90; 
+}
+
+html body .media-swiper-btn .swiper-button-prev {
+  @apply left-[10px] md:left-[18%] xl:left-[20%]; 
+}
+
+html body .media-swiper-btn .swiper-button-next {
+  @apply right-[10px] md:right-[18%] xl:right-[20%]; 
+}
+
+html body .medias-detail-pagination {
+  @apply relative pt-6;
+}

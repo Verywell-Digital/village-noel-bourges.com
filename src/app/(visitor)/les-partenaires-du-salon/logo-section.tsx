@@ -7,7 +7,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 export default function LogoGrid({ partners }) {
   return (
     <div className="mx-[-8px] flex flex-wrap">
-      {partners?.map(
+      {partners.map(
         (
           logo: {
             name: string;
@@ -27,7 +27,7 @@ export default function LogoGrid({ partners }) {
             >
               <div className="flex h-40 w-40 transform rounded-md bg-card p-2 transition duration-200 ease-in-out hover:scale-105">
                 <Image
-                  src={logo?.image.data?.attributes.url}
+                  src={logo?.image?.data.attributes.url}
                   alt={logo.name ?? "logo image"}
                   width={100}
                   height={100}

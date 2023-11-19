@@ -21,7 +21,7 @@ export default function Header({ ...props }: any) {
             className="rounded-b-md object-cover shadow-lg"
             width={193}
             height={95}
-            src={props.logo.logoImg.data?.attributes.url}
+            src={props.logo.logoImg.data.attributes.url}
             alt={"logo image"}
             sizes="(max-width: 768px) 100vw"
             quality={100}

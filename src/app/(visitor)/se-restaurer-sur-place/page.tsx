@@ -5,6 +5,7 @@ import WithMedia from "@/components/sections/with-media";
 import { GET_DINING_PAGE } from "@/lib/gql";
 import { getGqlData } from "@/utils/get-graphql-data";
 import { Metadata } from "next";
+import Loading from "@/components/loading";
 
 // export const revalidate = 60;
 
@@ -24,14 +25,20 @@ async function Page() {
   const restaurants = data.map((attributes: any) => attributes.sections);
   const restaurantsData = restaurants[0];
 
+  if (data[0] === undefined) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <div className="">
       <section className="w-full pt-8">
         <div className="container pb-10">
-          <Heading title={diningPageData?.title} />
+          <Heading title={diningPageData.title} />
         </div>
         {/* Utilisation de map() pour générer chaque section */}
-        {restaurantsData?.map((restaurant, index) => (
+        {restaurantsData.map((restaurant, index) => (
           <div key={index} className="relative mb-16 w-full pb-10 pt-10">
             <section className="container">
               <WithMedia

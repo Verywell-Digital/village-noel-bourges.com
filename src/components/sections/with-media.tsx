@@ -75,11 +75,11 @@ export default function WithMedia<T>({
   const getLayoutPosition = () => {
     switch (position) {
       case "right":
-        return "md:flex-row-reverse";
+        return "md:flex-row";
       case "center":
         return "flex-col-reverse justify-center max-w-4xl text-left";
       default:
-        return "md:flex-row";
+        return "md:flex-row-reverse";
     }
   };
 
@@ -98,36 +98,6 @@ export default function WithMedia<T>({
       >
         <div
           className={cn(
-            "mb-4 flex w-full",
-            position === "center" ? "md:w-full" : "md:w-[45%]"
-          )}
-        >
-          <Swiper
-            effect={"fade"}
-            spaceBetween={10}
-            navigation={true}
-            pagination={{
-              clickable: true,
-            }}
-            className={`media-swiper w-full ${className}`}
-            modules={[EffectFade, Navigation, Pagination]}
-          >
-            {medias?.map((media, index) => (
-              <SwiperSlide key={index}>
-                <Image
-                  width={500}
-                  height={500}
-                  alt={(media as any)?.alternativeText ?? "image"}
-                  className="m-auto h-auto w-full max-w-lg rounded-2xl object-contain object-top"
-                  src={(media as any)?.url || placeholderImage}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-        <div
-          className={cn(
             "flex w-full flex-col pb-6 ",
             position === "center"
               ? "w-full items-center text-center"
@@ -141,14 +111,15 @@ export default function WithMedia<T>({
             className={cn(
               "mb-4 flex w-full",
               position === "center"
-                ? "flex-col lg:space-x-10 lg:flex-row"
+                ? "flex-col lg:flex-row lg:space-x-10"
                 : "flex-col"
             )}
           >
             {children}
             <div
               className={cn(
-                React.isValidElement(children) && "max-w-xl text-left flex items-center"
+                React.isValidElement(children) &&
+                  "flex max-w-xl items-center text-left"
               )}
             >
               <div dangerouslySetInnerHTML={{ __html: description || "" }} />
@@ -205,6 +176,36 @@ export default function WithMedia<T>({
               </Button>
             </Link>
           ) : null}
+        </div>
+        <div
+          className={cn(
+            "mb-4 flex w-full m-auto",
+            position === "center" ? "md:w-full" : "md:w-[45%]"
+          )}
+        >
+          <Swiper
+            effect={"fade"}
+            spaceBetween={10}
+            navigation={true}
+            pagination={{
+              clickable: true,
+            }}
+            className={`media-swiper w-full ${className}`}
+            modules={[EffectFade, Navigation, Pagination]}
+          >
+            {medias?.map((media, index) => (
+              <SwiperSlide key={index}>
+                <Image
+                  width={500}
+                  height={500}
+                  alt={(media as any)?.alternativeText ?? "image"}
+                  className="m-auto h-auto w-full max-w-lg rounded-2xl object-contain object-top"
+                  src={(media as any)?.url || placeholderImage}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
       {displayBackground && (

@@ -11,12 +11,12 @@ export default function InformationSection({ mainSection }) {
           </div>
           <div className="w-[calc(100%-32px)] pl-4">
             <p className="flex pb-4 text-2xl font-bold text-primary">
-              {mainSection?.schedules?.title}
+              {mainSection.schedules.title}
             </p>
             <div
               className="text-base"
               dangerouslySetInnerHTML={{
-                __html: mainSection?.schedules?.description,
+                __html: mainSection.schedules.description,
               }}
             ></div>
           </div>
@@ -28,12 +28,12 @@ export default function InformationSection({ mainSection }) {
           </div>
           <div className="w-[calc(100%-32px)] pl-4">
             <div className="font-semibold text-primary">
-              {mainSection?.price.title}
+              {mainSection.price.title}
             </div>
             <div
               className="text-base"
               dangerouslySetInnerHTML={{
-                __html: mainSection?.price.description,
+                __html: mainSection.price.description,
               }}
             ></div>
           </div>

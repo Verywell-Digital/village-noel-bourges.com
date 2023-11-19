@@ -7,8 +7,8 @@ export default async function Hero({ ...props }: any) {
       {/*<div className="w-full object-fill pb-4 lg:mr-[30px] lg:w-[calc(75%-30px)] lg:pb-0"> */}
       <div className="w-full pb-4 lg:pb-0 hidden md:flex">
         <Image
-          alt={props.image.data?.attributes.alternativeText ?? "Image bannière"}
-          src={props.image.data?.attributes.url}
+          alt={props.image.data.attributes.alternativeText ?? "Image bannière"}
+          src={props.image.data.attributes.url}
           className="w-full rounded-2xl"
           sizes="(max-width: 1280px) 100vw, 1536px"
           width={1200}
@@ -18,9 +18,9 @@ export default async function Hero({ ...props }: any) {
       </div>
       <div className="w-full pb-0 md:hidden">
         <Image
-          alt={props.mobileImage.data?.attributes.alternativeText ?? "Image bannière"}
+          alt={props.mobileImage.data.attributes.alternativeText ?? "Image bannière"}
           sizes="(min-width: 808px) 50vw, 100vw"
-          src={props.mobileImage.data?.attributes.url}
+          src={props.mobileImage.data.attributes.url}
           className="w-full rounded-2xl"
           width={1200}
           height={174}

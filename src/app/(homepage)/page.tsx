@@ -72,15 +72,15 @@ export default async function HomePage() {
               altText={exhibitorSectionData.altText}
             >
               {exhibitorSectionData.button[0].url && (
-                <>
-                  <Link href={exhibitorSectionData.button[0].url}>
+                <div className="flex w-full flex-col lg:flex-row space-y-10 lg:space-y-0 justify-between">
+                  <Link className="flex justify-center md:justify-start" href={exhibitorSectionData.button[0].url}>
                     <Button className="w-fit" size="lg">
                       {exhibitorSectionData.button[0].label}
                       <ButtonIcon variant="secondary" />
                     </Button>
                   </Link>
-                  <div className=" flex justify-end">
-                    <div className="relative w-36">
+                  <div className="flex justify-center">
+                    <div className="relative w-full lg:w-36">
                       <div
                         onClick={undefined}
                         className="exhibitor-prev-slide-button swiper-button-prev"
@@ -91,7 +91,7 @@ export default async function HomePage() {
                       ></div>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </Heading>
             {
@@ -165,10 +165,10 @@ export default async function HomePage() {
               title={animationSectionData.title}
               text={animationSectionData.description}
             >
-              <div className="flex w-full flex-row justify-between">
+              <div className="flex w-full flex-col lg:flex-row space-y-10 lg:space-y-0 justify-between">
                 {animationSectionData.button[0].url && (
                   <Link
-                    className="flex"
+                    className="flex justify-center md:justify-start"
                     href={animationSectionData.button[0].url}
                   >
                     <Button className="w-fit" size="lg">
@@ -177,8 +177,8 @@ export default async function HomePage() {
                     </Button>
                   </Link>
                 )}
-                <div className=" flex">
-                  <div className="relative w-36">
+                <div className=" flex justify-center">
+                  <div className="relative w-full lg:w-36">
                     <div
                       onClick={undefined}
                       className="animation-prev-slide-button swiper-button-prev"

@@ -5,6 +5,7 @@ import { getMedias } from "@/data/faker-data";
 import { GET_MEDIAS, GET_MEDIA_PAGE } from "@/lib/gql";
 import { getGqlData } from "@/utils/get-graphql-data";
 import { Metadata } from "next";
+import Loading from "@/components/loading";
 
 // export const revalidate = 60;
 
@@ -24,10 +25,16 @@ async function Page() {
 
   const mediasData = await getGqlData(GET_MEDIAS, "subsiteMediaContents");
 
+  if (data[0] === undefined) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <div key="any" className="space-y-40">
       <section className="container w-full space-y-20">
-        <Heading title={mediaPageData?.title} />
+        <Heading title={mediaPageData.title} />
         <MediasList medias={mediasData} />
       </section>
     </div>

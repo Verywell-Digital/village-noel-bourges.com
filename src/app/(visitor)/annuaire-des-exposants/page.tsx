@@ -35,7 +35,7 @@ export default async function Page() {
   return (
     <div className="mb-20 space-y-5">
       <div className="container">
-        <Title className="font-bold">{exhibitorDirectoryPageData?.title}</Title>
+        <Title className="font-bold">{exhibitorDirectoryPageData.title}</Title>
       </div>
       <ExhibitorsList data={exhibitorsContentData} />
     </div>

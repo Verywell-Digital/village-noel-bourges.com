@@ -50,7 +50,9 @@ export default async function Page() {
                 <WithMedia
                   displayBackground
                   displayButton={false}
-                  medias={[animation?.image?.data?.attributes]}
+                  medias={animation.image.data.map(
+                    (d: any) => d.attributes
+                  )}
                   className="z-10"
                   {...animation}
                 >

@@ -6,7 +6,7 @@ export default function Information({ ...props }) {
     <div
       className={cn(
         "mb-4 w-full rounded-2xl text-left",
-        props.position === "center" ? "w-full bg-card" : "bg-white"
+        props.position === "center" ? "w-full bg-card h-fit" : "bg-white"
       )}
     >
       <div className="pl-4 pr-4">

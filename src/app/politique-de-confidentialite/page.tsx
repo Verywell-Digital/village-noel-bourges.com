@@ -1,3 +1,4 @@
+import Loading from "@/components/loading";
 import Heading from "@/components/sections/heading"; // Import a shared heading component
 import { GET_PRIVACY_POLICY_PAGE } from "@/lib/gql";
 import { getGqlData } from "@/utils/get-graphql-data";
@@ -23,7 +24,12 @@ async function Page() {
     "subsitePrivacyPolicyPages"
   );
   const privacyPolityPageData = data[0];
-  return privacyPolityPageData && (
+
+  if (data[0] === undefined) {
+    return <Loading />;
+  }
+
+  return (
     <div className="container flex flex-col pb-32">
       <section className="w-full ">
         <div className="flex flex-col justify-between justify-items-center lg:flex-row lg:items-center">

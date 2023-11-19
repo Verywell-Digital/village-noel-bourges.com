@@ -40,10 +40,10 @@ MediaListSwiperProps<T>) {
           rows: 2,
           fill: "row",
         }}
-        pagination={{
-          el: ".swiper-pagination",
-          clickable: true,
-        }}
+        // pagination={{
+        //   el: ".swiper-pagination",
+        //   clickable: true,
+        // }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -51,16 +51,14 @@ MediaListSwiperProps<T>) {
         spaceBetween={15}
         className={`${className} w-full`}
         breakpoints={{
-          "@0.00": {
+          640: {
             slidesPerView: 1,
           },
-          "@0.50": {
+          768: {
             slidesPerView: 2,
+            spaceBetween: 40,
           },
-          "@0.75": {
-            slidesPerView: 3,
-          },
-          "@1.00": {
+          1024: {
             slidesPerView: itemPerRow,
           },
         }}

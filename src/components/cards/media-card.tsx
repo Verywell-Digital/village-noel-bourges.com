@@ -34,7 +34,7 @@ export function MediaCard({
   const placeholderImage = "/images/placeholder-large-h.png";
 
   return (
-    <>
+    <Link href={`/media/${props.slug}`}>
       <Card
         className={cn(
           "flex !min-h-max flex-col justify-between rounded-2xl border-none shadow-none",
@@ -88,7 +88,7 @@ export function MediaCard({
             </span>
           </div>
         </CardHeader>
-        <CardContent className="py-0 h-20">
+        <CardContent className="h-20 py-0">
           <Title
             className={`mb-4 ${isSelected ? "text-gray-100" : ""}`}
             level={3}
@@ -99,14 +99,12 @@ export function MediaCard({
         </CardContent>
         <CardFooter>
           {isSelected && (
-            <Link href={`/media/${props.slug}`}>
-              <Button variant="ghost" className="mt-4 p-0 text-secondary">
-                Plus de détails <ButtonIcon variant="accent" />
-              </Button>
-            </Link>
+            <Button variant="ghost" className="mt-4 p-0 text-secondary">
+              Plus de détails <ButtonIcon variant="accent" />
+            </Button>
           )}
         </CardFooter>
       </Card>
-    </>
+    </Link>
   );
 }

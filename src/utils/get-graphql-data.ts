@@ -15,5 +15,5 @@ export async function getGqlData(query: any, key: any, variables: any = {}) {
     // },
   });
 
-  return data.map((item: { attributes: any }) => item?.attributes);
+  return data.map((item: { attributes: any }) => item.attributes);
 }

@@ -41,7 +41,7 @@ export function MobileNavigationMenu({ ...props }) {
                 className="h-full w-full object-cover"
                 width={193}
                 height={95}
-                src={props.logo.logoImg.data?.attributes.url}
+                src={props.logo.logoImg.data.attributes.url}
                 alt={"logo image"}
                 sizes="(max-width: 768px) 100vw"
                 quality={100}

@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
     },
     icons: {
-      shortcut: `${favicon?.data?.attributes?.url}`,
+      shortcut: `${favicon.data.attributes.url}`,
     },
   };
 }
@@ -67,15 +67,15 @@ export default async function RootLayout({
   const data = await getGqlData(GET_LAYOUT, "subsiteLayouts");
 
   const siteData = data[0];
-  const header = data.map((attributes: any) => attributes?.header);
+  const header = data.map((attributes: any) => attributes.header);
   const headerData = header[0];
-  const headerMenu = data.map((attributes: any) => attributes?.headerMenu);
+  const headerMenu = data.map((attributes: any) => attributes.headerMenu);
   const headerNavigationData = headerMenu[0];
-  const hero = data.map((attributes: any) => attributes?.hero);
+  const hero = data.map((attributes: any) => attributes.hero);
   const heroData = hero[0];
-  const footer = data.map((attributes: any) => attributes?.footer);
+  const footer = data.map((attributes: any) => attributes.footer);
   const footerData = footer[0];
-  const footerMenu = data.map((attributes: any) => attributes?.footerMenu);
+  const footerMenu = data.map((attributes: any) => attributes.footerMenu);
   const footerNavigationData = footerMenu[0];
   return (
     <html

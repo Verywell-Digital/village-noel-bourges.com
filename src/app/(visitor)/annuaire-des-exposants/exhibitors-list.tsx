@@ -13,7 +13,7 @@ function categorizeItems(items) {
   return items.reduce((acc, exhibitor) => {
     const categoryName =
       exhibitor?.category?.data?.attributes?.parent?.data?.attributes.name
-    const subCategoryName = exhibitor.category.data?.attributes.name;
+    const subCategoryName = exhibitor.category.data.attributes.name;
 
     if (!acc[categoryName]) {
       acc[categoryName] = {}; //accumulate result from reduce

@@ -31,9 +31,9 @@ export default function DocList({ ...props }) {
               <span className="text-basefont-bold my-2.5 pl-5 pr-5 uppercase text-primary">
                 PDF
               </span>
-              {doc.document.data?.attributes.url && (
+              {doc.document.data.attributes.url && (
                 <Link
-                  href={doc.document.data?.attributes.url}
+                  href={doc.document.data.attributes.url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

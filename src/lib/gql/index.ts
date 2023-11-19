@@ -244,6 +244,7 @@ export const GET_EXHIBITOR_DIRECTORY_PAGE = gql`
 export const GET_EXHIBITOR_CONTENT = gql`
   query exhibitors {
     subsiteExhibitorContents(
+      sort: ["title:asc", "category.name:asc"]
       pagination: { page: 1, pageSize: 300 }
       filters: {
         site: { domain: { eq: "${domain}" } }

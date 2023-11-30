@@ -299,6 +299,7 @@ export const GET_EXHIBITOR_CONTENT = gql`
 export const GET_PARTNER_PAGE = gql`
   query partnerPage {
     subsitePartnerPages(
+      pagination: { page: 1, pageSize: 50 }
       filters: {
         site: { domain: { eq: "${domain}" } }
         edition: { year: { eq: null } }

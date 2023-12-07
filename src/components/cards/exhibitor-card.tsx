@@ -76,21 +76,40 @@ export function ExhibitorCard({
         onMouseLeave={() => setIsSelected(false)}
       >
         <CardHeader>
-          <div
-            className={`mb-auto flex justify-end justify-items-center ${
-              isSelected ? "text-gray-200" : "text-primary"
-            }`}
-          >
-            <span className=" hover:main-color pr-2.5 text-base font-normal">
-              {tagTitle ?? "Stand"}
-            </span>
-            <span
-              className={`inline-block rounded-xl border px-1.5 py-0.5 text-sm font-semibold uppercase ${
-                isSelected ? "border-gray-200" : "border-primary"
+          {tagValue && (
+            <div
+              className={`mb-auto flex justify-end justify-items-center ${
+                isSelected ? "text-gray-200" : "text-primary"
               }`}
             >
-              {tagValue ?? "A00"}
-            </span>
+              <span className=" hover:main-color pr-2.5 text-base font-normal">
+                {tagTitle ?? "Stand"}
+              </span>
+              <span
+                className={`inline-block rounded-xl border px-1.5 py-0.5 text-sm font-semibold uppercase ${
+                  isSelected ? "border-gray-200" : "border-primary"
+                }`}
+              >
+                {tagValue ?? "A00"}
+              </span>
+            </div>
+          )}
+          <div className="flex h-32">
+            {props?.plan?.data?.attributes.url && (
+              <Image
+                src={props?.plan?.data?.attributes.url ?? placeholderImage}
+                alt={
+                  props?.plan?.data?.attributes.alternativeText ??
+                  "animation image"
+                }
+                width={300}
+                height={200}
+                className="h-full w-full rounded-md object-cover object-center"
+                sizes="(max-width: 768px) 50vw"
+                quality={75}
+                priority={false}
+              />
+            )}
           </div>
         </CardHeader>
         <CardContent className="py-0">

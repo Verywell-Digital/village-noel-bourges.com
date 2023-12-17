@@ -50,12 +50,13 @@ const NavigationMenuTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
-    className={cn(navigationMenuTriggerStyle(), "group duration-0", className)}
+    className={cn(navigationMenuTriggerStyle(), "group", className)}
+    onClick={(e) => e.preventDefault()} //use to prevent the menu from closing when clicking on the trigger
     {...props}
   >
     {children}{" "}
     <ChevronDown
-      className="relative top-[1px] ml-1 h-3 w-3 transition duration-0 group-data-[state=open]:rotate-180"
+      className="relative top-[1px] ml-1 h-3 w-3 transition group-data-[state=open]:rotate-180"
       aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>

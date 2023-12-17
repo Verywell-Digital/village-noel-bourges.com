@@ -25,26 +25,24 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function Page() {
-  const data = await getGqlData(
-    GET_INFOS_PAGE,
-    "subsitePracticalInfoPages"
-  );
+  const data = await getGqlData(GET_INFOS_PAGE, "subsitePracticalInfoPages");
 
   const infosData = data[0];
 
   if (data[0] === undefined) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
-  
+
   return (
     <div className="space-y-12">
       <section className="container">
         <Title className="font-bold uppercase" level={1} isHTML>
           {infosData.title}
         </Title>
-        <InformationSection mainSection={infosData?.mainSection} />
+        <InformationSection
+          domain={data?.site?.data?.attributes?.domain}
+          mainSection={infosData?.mainSection}
+        />
       </section>
 
       <section className="container">

@@ -531,6 +531,13 @@ export const GET_EXHIBITOR_PAGE = gql`
     ) {
       data {
         attributes {
+          site {
+          data {
+            attributes {
+              domain
+            }
+          }
+        }
           title
           description
           emailDestinationAddress
@@ -585,6 +592,13 @@ export const GET_INFOS_PAGE = gql`
     ) {
       data {
         attributes {
+          site {
+          data {
+            attributes {
+              domain
+            }
+          }
+        }
           title
           mainSection {
             emailDestinationAddress

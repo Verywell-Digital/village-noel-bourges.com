@@ -1,7 +1,7 @@
 import { ContactForm } from "@/components/form/contact-form";
 import { IoCalendarOutline, IoTicketOutline } from "react-icons/io5";
 
-export default function InformationSection({ mainSection }) {
+export default function InformationSection({ domain, mainSection }) {
   return (
     <div className="flex flex-wrap pb-16 pt-5 lg:pb-20 xl:pb-24">
       <div className="w-full space-y-6 lg:w-1/2 lg:pr-6">
@@ -44,7 +44,7 @@ export default function InformationSection({ mainSection }) {
         <ContactForm
           hideFields={{ sector: true }}
           title="Nous contacter"
-          siteOrigin="salon-vins-gastronomie-bourges.com"
+          siteOrigin={domain}
           emailDestinationAddress={mainSection?.emailDestinationAddress}
           emailSubject={mainSection?.emailSubject}
         />

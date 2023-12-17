@@ -43,7 +43,7 @@ async function Page() {
         />
         <div className="w-full rounded-xl bg-card p-10 lg:w-1/2">
           <ContactForm
-            siteOrigin="salon-vins-gastronomie-bourges.com"
+            siteOrigin={data?.site?.data?.attributes?.domain}
             emailDestinationAddress={data.emailDestinationAddress}
             emailSubject={data.emailSubject}
           />

@@ -1,5 +1,5 @@
 import Heading from "@/components/sections/heading"; // Import a shared heading component
-import { GET_SALON_MAP_PAGE } from "@/lib/gql";
+import { GET_LAYOUT, GET_SALON_MAP_PAGE } from "@/lib/gql";
 import { getGqlData } from "@/utils/get-graphql-data";
 import { Button } from "@/components/ui/button";
 import ButtonIcon from "@/components/ui/button-icon";
@@ -22,12 +22,13 @@ async function Page() {
   const data = await getGqlData(GET_SALON_MAP_PAGE, "subsiteSalonMapPages");
   const salonMapPageData = data[0];
 
+  const dataLayout = await getGqlData(GET_LAYOUT, "subsiteLayouts");
+  const seo = dataLayout[0].seo;
+
   if (data[0] === undefined) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
-  
+
   return (
     <div className="container flex flex-col space-y-20 pb-32">
       <section className="w-full pt-8">
@@ -62,9 +63,9 @@ async function Page() {
           <PDFViewer file={salonMapPageData.pdf?.data.attributes} />
         ) : (
           <span className="mx-auto flex w-full max-w-4xl p-5 font-title text-xl font-bold text-accent lg:text-xl">
-            Le plan de l&lsquo;édition 2023 du Salon Vins et Gastronomie
-            n&lsquo;est pas encore disponible, merci de consulter cette page
-            ultérieurement.
+            Le plan de l&lsquo;édition {new Date().getFullYear()} du{" "}
+            {seo?.meta_Title} n&lsquo;est pas encore disponible, merci de
+            consulter cette page ultérieurement.
           </span>
         )}
       </section>

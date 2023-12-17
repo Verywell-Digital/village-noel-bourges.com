@@ -104,7 +104,11 @@ export default function WithMedia<T>({
               : "md:w-[55%] md:px-16"
           )}
         >
-          <Title className="uppercase" level={2} isHTML>
+          <Title
+            className={` ${position === "center" ? "py-5" : "p-0"} uppercase`}
+            level={2}
+            isHTML
+          >
             {title}
           </Title>
           <div
@@ -118,8 +122,10 @@ export default function WithMedia<T>({
             {children}
             <div
               className={cn(
-                React.isValidElement(children) &&
-                  "flex max-w-xl items-center text-left"
+                React.isValidElement(children) && position === "center"
+                  ? "max-w-lg"
+                  : "max-w-xl",
+                "flex items-center text-left"
               )}
             >
               <div dangerouslySetInnerHTML={{ __html: description || "" }} />
@@ -179,7 +185,7 @@ export default function WithMedia<T>({
         </div>
         <div
           className={cn(
-            "mb-4 flex w-full m-auto",
+            "m-auto mb-4 flex w-full",
             position === "center" ? "md:w-full" : "md:w-[45%]"
           )}
         >

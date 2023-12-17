@@ -65,7 +65,7 @@ export function ExhibitorCard({
 
   return (
     <Dialog>
-      <DialogTrigger className="text-left rounded-2xl">
+      <DialogTrigger className="text-left rounded-2xl w-full">
         <Card
           className={cn(
             "flex h-96 flex-col justify-between rounded-2xl border-none shadow-none",

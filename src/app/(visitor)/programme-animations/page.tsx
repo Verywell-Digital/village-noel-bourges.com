@@ -44,7 +44,7 @@ export default async function Page() {
           <div key={index}>
             <div className="pt-10" id={animation.id} />
             <div
-              className={`relative mb-16 w-full pb-10 pt-10 ${animation?.position}`}
+              className={`relative flex mb-16 w-full pb-10 pt-10 ${animation?.position}`}
             >
               <section className="container">
                 <WithMedia
@@ -53,6 +53,7 @@ export default async function Page() {
                   medias={animation.image.data.map(
                     (d: any) => d.attributes
                   )}
+                  // medias={[animation?.image?.data?.attributes]}
                   className="z-10"
                   {...animation}
                 >

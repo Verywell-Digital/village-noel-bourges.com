@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, Suspense } from "react";
+import React, { FC, Suspense, useRef } from "react";
 import Title from "../ui/title";
 import { Button } from "../ui/button";
 import ButtonIcon from "../ui/button-icon";
@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/effect-fade";
+// import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -86,6 +86,9 @@ export default function WithMedia<T>({
   // const image = getImages(1);
   // const placeholderImage = image[0].url;
   const placeholderImage = "/images/placeholder-large-h.png";
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef(null);
 
   return (
     <>
@@ -190,27 +193,58 @@ export default function WithMedia<T>({
           )}
         >
           <Swiper
-            effect={"fade"}
+            // effect={"fade"}
             spaceBetween={10}
-            navigation={true}
+            // navigation={true}
             pagination={{
+              el: ".media-pagination",
+              type: "bullets",
               clickable: true,
             }}
-            className={`media-swiper w-full ${className}`}
+            navigation={{
+              nextEl: ".media-next-slide-button",
+              prevEl: ".media-prev-slide-button",
+            }}
+            className={`media-swiper h-fit w-full space-y-10 ${className}`}
             modules={[EffectFade, Navigation, Pagination]}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={() => setActiveIndex(swiperRef.current.activeIndex)}
           >
             {medias?.map((media, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide className="m-auto flex" key={index}>
                 <Image
-                  width={500}
-                  height={500}
+                  layout="responsive"
+                  width={0}
+                  height={0}
                   alt={(media as any)?.alternativeText ?? "image"}
-                  className="m-auto h-auto w-full max-w-lg rounded-2xl object-contain object-top"
+                  className={`rounded-2xl object-top object-contain ${
+                    medias.length > 1 && ""
+                  }`}
                   src={(media as any)?.url || placeholderImage}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </SwiperSlide>
             ))}
+            <div className="flex justify-between">
+              <div className="media-pagination">
+                {medias?.map((_, index) => (
+                  <div
+                    key={index}
+                    onClick={() => swiperRef.current.slideTo(index)}
+                  />
+                ))}
+              </div>
+              <div className="relative flex w-36 space-x-5">
+                <div
+                  onClick={undefined}
+                  className="media-prev-slide-button swiper-button-prev"
+                ></div>
+                <div
+                  onClick={undefined}
+                  className="media-next-slide-button swiper-button-next"
+                ></div>
+              </div>
+            </div>
           </Swiper>
         </div>
       </div>

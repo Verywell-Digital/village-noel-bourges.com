@@ -391,6 +391,7 @@ export const GET_SALON_MAP_PAGE = gql`
               }
             }
           }
+          notAvailableMessage
           seo {
             meta_Title
             meta_Description

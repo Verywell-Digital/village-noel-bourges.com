@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import sendEmail from '@/service/send-email';
 
 export async function POST(req: NextRequest) {
-  const { formData, emailDestinationAddress, emailSubject } = await req.json();
+  const { formData, emailSourceAddress, emailDestinationAddress, emailSubject } = await req.json();
 
   try {
-    await sendEmail(formData, emailDestinationAddress, emailSubject);
+    await sendEmail(formData, emailSourceAddress, emailDestinationAddress, emailSubject);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error(error);

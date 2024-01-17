@@ -541,6 +541,7 @@ export const GET_EXHIBITOR_PAGE = gql`
         }
           title
           description
+          emailSourceAddress
           emailDestinationAddress
           emailSubject
           titleH2
@@ -602,6 +603,7 @@ export const GET_INFOS_PAGE = gql`
         }
           title
           mainSection {
+            emailSourceAddress
             emailDestinationAddress
             emailSubject
             schedules {

@@ -31,6 +31,8 @@ async function Page() {
   const data = exhibitorData[0];
 
   const dataMediaSection = data?.sections;
+
+  
   return (
     <div className="w-full space-y-20 pt-8">
       <div className="container">
@@ -39,19 +41,20 @@ async function Page() {
       <div className="container flex flex-col space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
         <div
           dangerouslySetInnerHTML={{ __html: data?.description || "" }}
-          className="pdf-arrow flex w-full items-center justify-center p-5 -indent-2 lg:w-1/2"
+          className="pdf-arrow flex w-full items-center justify-center p-5 text-left -indent-2 lg:w-1/2"
         />
         <div className="w-full rounded-xl bg-card p-10 lg:w-1/2">
           <ContactForm
             siteOrigin={data?.site?.data?.attributes?.domain}
-            emailDestinationAddress={data.emailDestinationAddress}
-            emailSubject={data.emailSubject}
+            emailSourceAddress={data?.emailSourceAddress ?? "noreply@lesrivesdauron.fr"}
+            emailDestinationAddress={data?.emailDestinationAddress}
+            emailSubject={data?.emailSubject}
           />
         </div>
       </div>
       <DocList {...data} />
       {/* Utilisation de map() pour générer chaque section */}
-      {dataMediaSection.map(
+      {dataMediaSection?.map(
         (
           section: React.JSX.IntrinsicAttributes & WithMediaProps<unknown>,
           index: React.Key

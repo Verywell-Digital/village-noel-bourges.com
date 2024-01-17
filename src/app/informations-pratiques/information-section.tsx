@@ -46,6 +46,7 @@ export default function InformationSection({ domain, mainSection }) {
           hideFields={{ sector: true }}
           title="Nous contacter"
           siteOrigin={domain}
+          emailSourceAddress={mainSection?.emailSourceAddress ?? "noreply@lesrivesdauron.fr"}
           emailDestinationAddress={mainSection?.emailDestinationAddress}
           emailSubject={mainSection?.emailSubject}
         />

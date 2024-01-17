@@ -14,11 +14,13 @@ const transporter = nodemailer.createTransport({
 
 export default async function sendEmail(
   formData: any,
+  emailSourceAddress: any,
   emailDestinationAddress: any,
   emailSubject: any
 ) {
   const mailOptions = {
-    from: "noreply@salon-vins-gastronomie-bourges.com",
+    // from: "noreply@salon-vins-gastronomie-bourges.com",
+    from: emailSourceAddress,
     to: emailDestinationAddress,
     subject: emailSubject,
     text: formData,

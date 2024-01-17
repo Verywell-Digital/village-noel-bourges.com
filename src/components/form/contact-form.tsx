@@ -22,6 +22,7 @@ interface FormProps {
   title?: string;
   description?: string;
   siteOrigin: string;
+  emailSourceAddress: string;
   emailDestinationAddress: string;
   emailSubject: string;
   [key: string]: any; //any other props
@@ -79,10 +80,10 @@ export function ContactForm({
   hideFields,
   submit,
   siteOrigin,
+  emailSourceAddress,
   emailDestinationAddress,
   emailSubject,
 }: FormProps) {
-  console.log("🚀 ~ file: contact-form.tsx:85 ~ siteOrigin:", siteOrigin)
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema as any),
@@ -106,7 +107,6 @@ export function ContactForm({
     \nVous avez reçu une demande de contact depuis le ${emailSubject.toLowerCase()} du site ${siteOrigin}.
     \nVoici les informations récoltées :
     \n${formattedData}`;
-    // console.log("🚀 ~ file: contact-form.tsx:109 ~ onSubmit ~ emailBody:", emailBody)
 
     try {
       const response = await fetch("/api/email", {
@@ -116,6 +116,7 @@ export function ContactForm({
         },
         body: JSON.stringify({
           formData: emailBody,
+          emailSourceAddress,
           emailDestinationAddress,
           emailSubject,
         }),

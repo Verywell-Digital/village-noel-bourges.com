@@ -28,7 +28,7 @@ export function MediaCard({
   className,
   isSelected,
   setIsSelected,
-  pdfThumbnail,
+  thumbnail,
   ...props
 }: CardProps) {
   const placeholderImage = "/images/placeholder-large-h.png";
@@ -50,7 +50,7 @@ export function MediaCard({
             {props?.medias[0]?.file?.data?.attributes.url && (
               <Image
                 src={
-                  pdfThumbnail[0]?.file?.data?.attributes.url ||
+                  thumbnail[0]?.file?.data?.attributes.url ||
                   props?.medias[0]?.file?.data?.attributes.url ||
                   placeholderImage
                 }

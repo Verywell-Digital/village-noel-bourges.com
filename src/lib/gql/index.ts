@@ -443,7 +443,7 @@ export const GET_MEDIAS = gql`
               }
             }
           }
-          pdfThumbnail {
+          thumbnail {
             file {
               data {
                 attributes {

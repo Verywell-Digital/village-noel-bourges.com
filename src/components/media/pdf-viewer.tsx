@@ -14,10 +14,7 @@ export interface PDFViewerProps {
   className?: string;
 }
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
-  import.meta.url
-).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 export default function PDFViewer({ file, className }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number>();

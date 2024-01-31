@@ -463,6 +463,7 @@ export const GET_MEDIAS = gql`
                   }
                 }
               }
+              url
               text
             }
           }
@@ -509,6 +510,7 @@ export const GET_MEDIA_BY_SLUG = gql`
                   }
                 }
               }
+              url
               text
             }
           }

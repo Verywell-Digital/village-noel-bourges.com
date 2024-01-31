@@ -7,8 +7,8 @@ import DownloadAllButton from "./download-all";
 import { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import PDFViewer from "@/components/media/pdf-viewer";
-
-// export const revalidate = 60;
+import Player from "./player";
+import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
@@ -34,7 +34,7 @@ export default async function Page({
   const mediaData = await getGqlData(
     GET_MEDIA_BY_SLUG,
     "subsiteMediaContents",
-    params
+    params,
   );
   const media = mediaData[0];
 
@@ -44,12 +44,12 @@ export default async function Page({
         <div className="flex flex-col justify-between pb-8 md:flex-row md:items-end">
           <div className="flex flex-col">
             <div className="mb-2 w-fit rounded-2xl border border-solid border-card-foreground px-2.5 py-px text-base text-card-foreground">
-              {media.category?.data?.attributes.name}
+              {media?.category?.data?.attributes.name}
             </div>
             <div className="w-fit rounded-2xl bg-primary px-2.5 py-px text-lg text-background xl:text-xl 2xl:text-2xl">
-              {media.date}
+              {media?.date}
             </div>
-            <Title className="mt-5 font-bold">{media.name}</Title>
+            <Title className="mt-5 font-bold">{media?.name}</Title>
           </div>
           {/* <div className="mb-5 h-fit w-fit md:mb-6">
             <DownloadAllButton media={media} />
@@ -59,8 +59,15 @@ export default async function Page({
 
       <div className=" flex justify-center lg:pb-12">
         <div className="relative w-full">
-          {media?.medias[0]?.file?.data?.attributes.url.endsWith(".pdf") ? (
-            <PDFViewer className="container" file={media?.medias[0]?.file?.data?.attributes} />
+          {media?.medias[0].url ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <Player className="container" url={media?.medias[0].url} />
+            </Suspense>
+          ) : media?.medias[0]?.file?.data?.attributes.url.endsWith(".pdf") ? (
+            <PDFViewer
+              className="container"
+              file={media?.medias[0]?.file?.data?.attributes}
+            />
           ) : (
             <>
               <div className="relative w-full">
@@ -77,7 +84,7 @@ export default async function Page({
                 <ImageSwiper
                   className="medias-detail-swiper" // Additional classes for styling the swiper
                   CardComponent={ImageCard}
-                  data={media.medias}
+                  data={media?.medias}
                   navigation={{
                     nextEl: ".medias-detail-next-slide-button",
                     prevEl: ".medias-detail-prev-slide-button",

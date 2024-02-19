@@ -443,17 +443,15 @@ export const GET_MEDIAS = gql`
               }
             }
           }
-          thumbnail {
-            file {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
           medias {
             ... on ComponentSharedMedia {
+                thumbnail {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
               file {
                 data {
                   attributes {

@@ -50,7 +50,7 @@ export function MediaCard({
             {props?.medias[0]?.file?.data?.attributes.url && (
               <Image
                 src={
-                  thumbnail[0]?.file?.data?.attributes.url ||
+                  props?.medias[0]?.thumbnail?.data?.attributes.url ||
                   props?.medias[0]?.file?.data?.attributes.url ||
                   placeholderImage
                 }

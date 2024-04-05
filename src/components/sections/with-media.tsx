@@ -32,6 +32,7 @@ import { getImages } from "@/data/faker-data"; // Import functions to generate m
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Markdown from "markdown-to-jsx";
 
 // interface LayoutProps {
 //   position?: "default" | "reverse" | "centered";
@@ -131,7 +132,7 @@ export default function WithMedia<T>({
                 "flex items-center text-left"
               )}
             >
-              <div dangerouslySetInnerHTML={{ __html: description || "" }} />
+              <Markdown>{description}</Markdown>
             </div>
           </div>
           {displayButton && isModal ? (

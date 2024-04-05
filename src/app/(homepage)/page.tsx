@@ -14,7 +14,7 @@ import WithMedia from "@/components/sections/with-media"; // Import a swiper com
 import ButtonIcon from "@/components/ui/button-icon";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Title from "@/components/ui/title";
+import Markdown from "markdown-to-jsx";
 
 // Set a revalidation interval for the data (in seconds)
 // export const revalidate = 60;
@@ -25,29 +25,28 @@ export default async function HomePage() {
   const homePagesData = await getGqlData(GET_HOMEPAGE, "subsiteHomePages");
 
   const exhibitorSection = homePagesData.map(
-    (attributes: any) => attributes.exhibitorSection
+    (attributes: any) => attributes.exhibitorSection,
   );
   const exhibitorSectionData = exhibitorSection[0];
 
   const lunchSection = homePagesData.map(
-    (attributes: any) => attributes.lunchSection
+    (attributes: any) => attributes.lunchSection,
   );
   const lunchSectionData = lunchSection[0];
 
   const animationSection = homePagesData.map(
-    (attributes: any) => attributes.animationSection
+    (attributes: any) => attributes.animationSection,
   );
   const animationSectionData = animationSection[0];
 
   const animationsPagesData = await getGqlData(
     GET_ANIMATION_PAGE,
-    "subsiteAnimationProgramPages"
+    "subsiteAnimationProgramPages",
   );
   const exhibitorsContentData = await getGqlData(
     GET_EXHIBITOR_CONTENT,
-    "subsiteExhibitorContents"
+    "subsiteExhibitorContents",
   );
-
 
   //Fisher-Yates algorithm to shuffle the array
   function shuffleArray(array) {
@@ -59,7 +58,10 @@ export default async function HomePage() {
   }
 
   const shuffledExhibitorsContentData = shuffleArray(exhibitorsContentData);
-  const limitedExhibitorsContentData = shuffledExhibitorsContentData.slice(0, 15);
+  const limitedExhibitorsContentData = shuffledExhibitorsContentData.slice(
+    0,
+    15,
+  );
 
   const animationsData = animationsPagesData.map((d: any) => d.sections).flat();
 
@@ -78,20 +80,20 @@ export default async function HomePage() {
             {/* Display a heading for the exhibitors section */}
             <Heading
               isHtml
-              title={exhibitorSectionData.title}
-              text={exhibitorSectionData.description}
-              altText={exhibitorSectionData.altText}
+              title={exhibitorSectionData?.title}
+              text={exhibitorSectionData?.description}
+              altText={exhibitorSectionData?.altText}
             >
-              {exhibitorSectionData.button[0].url && (
-                <div className="flex w-full flex-col lg:flex-row space-y-10 lg:space-y-0 justify-between">
-                  <Link className="flex justify-center md:justify-start" href={exhibitorSectionData.button[0].url}>
+              {exhibitorSectionData?.button[0].url && (
+                <>
+                  <Link href={exhibitorSectionData?.button[0].url}>
                     <Button className="w-fit" size="lg">
-                      {exhibitorSectionData.button[0].label}
+                      {exhibitorSectionData?.button[0].label}
                       <ButtonIcon variant="secondary" />
                     </Button>
                   </Link>
-                  <div className="flex justify-center">
-                    <div className="relative w-full lg:w-36">
+                  <div className=" flex justify-end">
+                    <div className="relative w-36">
                       <div
                         onClick={undefined}
                         className="exhibitor-prev-slide-button swiper-button-prev"
@@ -102,11 +104,12 @@ export default async function HomePage() {
                       ></div>
                     </div>
                   </div>
-                </div>
+                </>
               )}
             </Heading>
             {
-              limitedExhibitorsContentData && limitedExhibitorsContentData.length > 0 ? (
+              limitedExhibitorsContentData &&
+              limitedExhibitorsContentData.length > 0 ? (
                 <div className="flex-wrap overflow-hidden lg:-mr-[500px]">
                   {/* Use a swiper component to display exhibitor cards */}
                   <CardListSwiper
@@ -114,9 +117,11 @@ export default async function HomePage() {
                     itemPerRow={6} // Number of exhibitor cards per row
                     CardComponent={ExhibitorCard} // Component to use for each exhibitor card
                     cardClassName="" // Additional classes for styling the exhibitor cards
-                    data={limitedExhibitorsContentData.map((exhibitor: any) => ({
-                      ...exhibitor,
-                    }))} // Data source for exhibitor cards
+                    data={limitedExhibitorsContentData?.map(
+                      (exhibitor: any) => ({
+                        ...exhibitor,
+                      }),
+                    )} // Data source for exhibitor cards
                     navigation={{
                       nextEl: ".exhibitor-next-slide-button",
                       prevEl: ".exhibitor-prev-slide-button",
@@ -129,13 +134,13 @@ export default async function HomePage() {
               //   La liste des exposants n’est pas encore disponible, merci de consulter cette page ultérieurement.
               // </span>
             }
-            {exhibitorSectionData.button[1].url && (
+            {exhibitorSectionData?.button[1].url && (
               <Link
                 className="flex justify-end pt-5"
-                href={exhibitorSectionData.button[1].url}
+                href={exhibitorSectionData?.button[1].url}
               >
                 <Button variant="ghost" className="w-fit" size="default">
-                  {exhibitorSectionData.button[1].label}
+                  {exhibitorSectionData?.button[1].label}
                   <ButtonIcon variant="default" />
                 </Button>
               </Link>
@@ -150,16 +155,16 @@ export default async function HomePage() {
             <WithMedia
               className="z-10" // Additional classes for styling the swiper
               layout={{ position: "default" }}
-              medias={lunchSectionData.mediaSwiper.data.map(
-                (d: any) => d.attributes
+              medias={lunchSectionData?.mediaSwiper.data.map(
+                (d: any) => d.attributes,
               )} // Data source for images cards
-              title={lunchSectionData.title} // Data source for title section
+              title={lunchSectionData?.title} // Data source for title section
               button={{
-                label: lunchSectionData.button.label,
-                url: lunchSectionData.button.url || "/",
+                label: lunchSectionData?.button.label,
+                url: lunchSectionData?.button.url || "/",
               }}
             >
-              <p>{lunchSectionData.description}</p>
+              <Markdown>{lunchSectionData?.description}</Markdown>
             </WithMedia>
           </section>
           {/* Add a decorative element */}
@@ -173,23 +178,23 @@ export default async function HomePage() {
             <Heading
               isHtml
               titleLevel={2}
-              title={animationSectionData.title}
-              text={animationSectionData.description}
+              title={animationSectionData?.title}
+              text={animationSectionData?.description}
             >
-              <div className="flex w-full flex-col lg:flex-row space-y-10 lg:space-y-0 justify-between">
-                {animationSectionData.button[0].url && (
+              <div className="flex w-full flex-row justify-between">
+                {animationSectionData?.button[0].url && (
                   <Link
-                    className="flex justify-center md:justify-start"
-                    href={animationSectionData.button[0].url}
+                    className="flex"
+                    href={animationSectionData?.button[0].url}
                   >
                     <Button className="w-fit" size="lg">
-                      {animationSectionData.button[0].label}
+                      {animationSectionData?.button[0].label}
                       <ButtonIcon variant="secondary" />
                     </Button>
                   </Link>
                 )}
-                <div className=" flex justify-center">
-                  <div className="relative w-full lg:w-36">
+                <div className=" flex">
+                  <div className="relative w-36">
                     <div
                       onClick={undefined}
                       className="animation-prev-slide-button swiper-button-prev"
@@ -202,30 +207,33 @@ export default async function HomePage() {
                 </div>
               </div>
             </Heading>
-            {animationsData && animationsData.length > 0 ? (
-              <div className="relative flex-wrap lg:-mr-[300px]">
-                {/* Use a swiper component to display animation cards */}
-                <CardListSwiper
-                  transitionEffect
-                  className="animation-swiper" // Additional classes for styling the swiper
-                  itemPerRow={5} // Number of exhibitor cards per row
-                  CardComponent={AnimationCard} // Component to use for each exhibitor card
-                  cardClassName="" // Additional classes for styling the exhibitor cards.
-                  data={animationsData.map((animation: any, index: number) => ({
-                    ...animation,
-                    index: index,
-                  }))} // Data source for animation cards
-                  navigation={{
-                    nextEl: ".animation-next-slide-button",
-                    prevEl: ".animation-prev-slide-button",
-                  }}
-                />
-              </div>
-            ) : null
-            // <span className="mx-auto flex w-full max-w-4xl p-5 font-title text-xl font-bold text-accent lg:text-xl">
-            //   La liste des animations n’est pas encore disponible, merci de
-            //   consulter cette page ultérieurement.
-            // </span>
+            {
+              animationsData && animationsData.length > 0 ? (
+                <div className="relative flex-wrap lg:-mr-[300px]">
+                  {/* Use a swiper component to display animation cards */}
+                  <CardListSwiper
+                    transitionEffect
+                    className="animation-swiper" // Additional classes for styling the swiper
+                    itemPerRow={5} // Number of exhibitor cards per row
+                    CardComponent={AnimationCard} // Component to use for each exhibitor card
+                    cardClassName="" // Additional classes for styling the exhibitor cards.
+                    data={animationsData.map(
+                      (animation: any, index: number) => ({
+                        ...animation,
+                        index: index,
+                      }),
+                    )} // Data source for animation cards
+                    navigation={{
+                      nextEl: ".animation-next-slide-button",
+                      prevEl: ".animation-prev-slide-button",
+                    }}
+                  />
+                </div>
+              ) : null
+              // <span className="mx-auto flex w-full max-w-4xl p-5 font-title text-xl font-bold text-accent lg:text-xl">
+              //   La liste des animations n’est pas encore disponible, merci de
+              //   consulter cette page ultérieurement.
+              // </span>
             }
           </div>
         </section>
